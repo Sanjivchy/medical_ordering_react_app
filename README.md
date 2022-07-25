@@ -7,7 +7,7 @@ step 3 : run 'yarn' (if not please do install yarn first), dont use npm
 
 step 4 : To start react server - yarn dev
 
-conguratulasan, good to go
+congratulations, good to go
  if kunai package install gareko xa vane do mention
 
 please follow issues for your task
