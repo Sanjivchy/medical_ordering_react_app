@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import LoginForm from './components/loginForm/index'
+import RegistrationForm from './components/RegistrationForm/index'
 function App() {
   return (
     <>
-      <div>
-        <div className="text-primary text-[50px]"></div>
-        <input type="text" placeholder="Search" />
-      </div>
+      {/* <LoginForm></LoginForm> */}
+      <RegistrationForm></RegistrationForm>
     </>
   );
 }
