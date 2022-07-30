@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+// import LoginForm from './components/loginForm/index'
+// import RegistrationForm from './components/RegistrationForm/index'
+import SidebarUi from './components/sidebarUi/index'
 function App() {
   return (
     <>
-      <div>
-        <div className="text-primary text-[50px]"></div>
-        <input type="text" placeholder="Search" />
-      </div>
+      {/* <LoginForm></LoginForm> */}
+      {/* <RegistrationForm></RegistrationForm> */}
+      <SidebarUi></SidebarUi>
     </>
   );
 }

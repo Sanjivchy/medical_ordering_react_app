@@ -16,3 +16,6 @@ input[type="email"]:focus,
 input[type="date"]:focus textarea:focus {
   @apply shadow-md;
 }
+.form-label{
+  @apply text-black mb-2 text-sm leading-5;
+}
