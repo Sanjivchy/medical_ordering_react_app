@@ -6,7 +6,7 @@ import server from '../../lib/server';
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../../store/auth/authSlice';
 
-function index() {
+function index(props) {
     const auth = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
@@ -20,11 +20,12 @@ function index() {
             setError('Fill all the fields.')
             return
         }
-        const res = await server.post('login/', {username:email, password})
+        const res = await server.post('login/', {email, password})
         console.log(res);
         if(res?.data) {
             console.log('dat');
             dispatch(login({email: email, token: res.data.access, refresh: res.data.refresh}))
+            props.history.push('/')
         }
     }
     return (
