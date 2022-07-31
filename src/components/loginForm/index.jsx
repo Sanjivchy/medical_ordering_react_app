@@ -1,7 +1,32 @@
 import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import YourSvg from '../../assets/images/logo.svg';
+import server from '../../lib/server';
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../../store/auth/authSlice';
 
 function index() {
+    const auth = useSelector(state => state.auth)
+    const dispatch = useDispatch()
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if(!email || !password) {
+            setError('Fill all the fields.')
+            return
+        }
+        const res = await server.post('login/', {username:email, password})
+        console.log(res);
+        if(res?.data) {
+            console.log('dat');
+            dispatch(login({email: email, token: res.data.access, refresh: res.data.refresh}))
+        }
+    }
     return (
         <div className='flex h-screen w-screen'>
             <div className='bg-primary flex-1 '>
@@ -17,26 +42,27 @@ function index() {
                             <h2 className='text-[32px] leading-10 text-primary font-bold'>Login</h2>
                             <div className=' space-x-1 text-black text-base'>
                                 <p className='inline-block'>Don’t have an account? </p>
-                                <a href=""><u>Register</u></a>
+                                <Link to="/register" ><u>Register</u></Link>
                             </div>
                         </div>
                         <div className='space-y-6'>
                             <div className='before:content-[] h-px w-full bg-[#E6E3E3] relative'>
                                 <span className='absolute left-[calc(50%-10px)] text-[#E6E3E3] inline-block -top-4 bg-white p-1'>OR</span>
                             </div>
-                            <form className='space-y-8'>
+                            <form className='space-y-8' onSubmit={handleSubmit}>
                                 <div className='space-y-6'>
+                                    {error && <p className=" text-red-500">{error}</p>}
                                     <div className='form-group flex flex-col'>
                                         <label className='form-label'>Email Address</label>
-                                        <input className='form-control' type="text" placeholder='Enter your email' />
+                                        <input className='form-control' type="text" placeholder='Enter your email' value={email} onChange={(e) => setEmail(e.target.value)} />
                                     </div>
                                     <div className='form-group flex flex-col'>
                                         <label className='form-label'>Password</label>
-                                        <input className='forn-control ' type="text" placeholder='Enter your password' />
+                                        <input className='forn-control ' type="text" placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} />
                                     </div>
 
                                 </div>
-                                <button className='bg-primary  text-base leading-6 font-medium text-white w-full py-[14px] rounded-lg'>Login</button>
+                                <button type='submit' className='bg-primary  text-base leading-6 font-medium text-white w-full py-[14px] rounded-lg'>Login</button>
                             </form>
                         </div>
                     </div>
