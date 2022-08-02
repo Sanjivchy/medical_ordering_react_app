@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* body background color */
+body{
+  background-color: #000300;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="email"],
