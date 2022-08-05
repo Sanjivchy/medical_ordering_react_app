@@ -16,15 +16,15 @@ function index(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if(!email || !password) {
+        if(!username || !password) {
             setError('Fill all the fields.')
             return
         }
-        const res = await server.post('login/', {username, password})
+        const res = await server.post('api/token/', {username, password})
         console.log(res);
         if(res?.data) {
-            dispatch(login({email: email, token: res.data.access, refresh: res.data.refresh}))
-            props.history.push('/')
+            dispatch(login({username: username, token: res.data.access, refresh: res.data.refresh}))
+            await props.history.push('/')
         }
     }
     return (

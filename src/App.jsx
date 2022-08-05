@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Route, Routes } from 'react-router-dom'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
+import ChangePassword from "./pages/auth/ChangePassword";
 import Dashboard from './pages/dashboard/Index'
 
 import MemberCreate from './pages/members/Create'
@@ -29,6 +30,7 @@ function App() {
       <Route exact path="/" element={<Dashboard />} />
       <Route exact path="/login" element={<Login />}  />
       <Route exact path="/register" element={<Register />} />
+      <Route exact path="/change-password" element={<ChangePassword />} />
 
       <Route exact path="/members" element={<MemberList />} />
       <Route exact path="/members/create" element={<MemberCreate />} />
