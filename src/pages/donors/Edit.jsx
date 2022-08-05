@@ -41,7 +41,7 @@ function DonorEdit(props) {
         if(res.status != 200) {
             setError('Error occured.')
         } 
-        props.history.push('/doners/list')
+        props.history.push('/doners')
     }
 
     useEffect(() => {

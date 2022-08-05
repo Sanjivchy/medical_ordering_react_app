@@ -24,7 +24,7 @@ function MemberCreate(props) {
         if(res.status != 200) {
             setError('Error occured.')
         } 
-        props.history.push('/requests/list')
+        props.history.push('/requests')
     }
 
     const listMembers = async () => {

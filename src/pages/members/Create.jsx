@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import server from '../../lib/server'
 
-function MemberCreate() {
+function MemberCreate(props) {
     const [error, setError] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -36,7 +36,7 @@ function MemberCreate() {
         if(res.status != 200) {
             setError('Error occured.')
         } 
-        props.history.push('/members/list')
+        props.history.push('/members')
     }
   return (
     <div className='flex h-screen w-screen'>

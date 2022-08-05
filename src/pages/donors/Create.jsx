@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import server from '../../lib/server'
 
-function DonorCreate() {
+function DonorCreate(props) {
     const [error, setError] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -36,7 +36,7 @@ function DonorCreate() {
         if(res.status != 200) {
             setError('Error occured.')
         } 
-        props.history.push('/donar/list')
+        props.history.push('/donor')
     }
   return (
     <div className='flex h-screen w-screen'>
