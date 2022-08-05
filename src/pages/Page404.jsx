@@ -2,7 +2,7 @@ import React from 'react'
 
 function Page404() {
   return (
-    <div className='text-white'>Page404</div>
+    <div className=''>Page404</div>
   )
 }
 

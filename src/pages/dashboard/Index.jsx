@@ -9,7 +9,7 @@ import NavBar from '../../components/Home/NavBar'
 
 function Dashboard() {
   return (
-    <div>
+    <div className='bg-black'>
     {/* <div className="text-primary text-[50px]"></div>
     <input type="text" placeholder="Search" /> */}
     <NavBar />

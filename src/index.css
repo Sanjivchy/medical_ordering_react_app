@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 /* body background color */
-body{
+/* body{
   background-color: #000300;
-}
+} */
 
 input[type="text"],
 input[type="password"],
