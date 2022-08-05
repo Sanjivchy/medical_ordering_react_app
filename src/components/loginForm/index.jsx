@@ -10,7 +10,7 @@ function index(props) {
     const auth = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
-    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
@@ -20,10 +20,9 @@ function index(props) {
             setError('Fill all the fields.')
             return
         }
-        const res = await server.post('login/', {email, password})
+        const res = await server.post('login/', {username, password})
         console.log(res);
         if(res?.data) {
-            console.log('dat');
             dispatch(login({email: email, token: res.data.access, refresh: res.data.refresh}))
             props.history.push('/')
         }
@@ -54,12 +53,12 @@ function index(props) {
                                 <div className='space-y-6'>
                                     {error && <p className=" text-red-500">{error}</p>}
                                     <div className='form-group flex flex-col'>
-                                        <label className='form-label'>Email Address</label>
-                                        <input className='form-control' type="text" placeholder='Enter your email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                                        <label className='form-label'>Username</label>
+                                        <input className='form-control' type="text" placeholder='Enter your email' value={username} onChange={(e) => setUsername(e.target.value)} />
                                     </div>
                                     <div className='form-group flex flex-col'>
                                         <label className='form-label'>Password</label>
-                                        <input className='forn-control ' type="text" placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                                        <input className='forn-control ' type="password" placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} />
                                     </div>
 
                                 </div>
