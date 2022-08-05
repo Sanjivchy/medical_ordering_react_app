@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import server from '../../lib/server'
 
 function DonorCreate(props) {
+    const navigate = useNavigate();
     const [error, setError] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -36,7 +38,7 @@ function DonorCreate(props) {
         if(res.status != 200) {
             setError('Error occured.')
         } 
-        props.history.push('/donor')
+        navigate('/donors')
     }
   return (
     <div className='flex h-screen w-screen'>

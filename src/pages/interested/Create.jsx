@@ -26,7 +26,7 @@ function MemberCreate(props) {
         if(res.status != 200) {
             setError('Error occured.')
         } 
-        navigate('/requests')
+        navigate('/interested')
     }
 
     const listMembers = async () => {

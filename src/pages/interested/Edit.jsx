@@ -1,32 +1,43 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'
 import server from '../../lib/server'
 
-function MemberCreate(props) {
+function MemberEdit(props) {
+    const {Id} = useParams()
     const navigate = useNavigate();
     const [error, setError] = useState('')
     const [members, setMembers] = useState([])
     const [urgency, setUrgency] = useState('')
     const [memberId, setMemberId] = useState('')
     const [document, setDocument] = useState()
+    let tempDocument;
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if(!urgency || !memberId || !document) {
+        if(!urgency || !memberId ||  !document) {
             setError('All fields are mendatory.')
             return
         }
         const formData = new FormData()
         formData.append('urgency', urgency)
         formData.append('member_id', memberId)
-        formData.append('document', document, document.name)
-        const res = await server.post('request/list', formData)
+        if(document)
+            formData.append('document', document, document.name)
+        const res = await server.put(`request/crud/${Id}`, formData)
         if(res.status != 200) {
             setError('Error occured.')
+            return
         } 
-        navigate('/requests')
+        navigate('/interested')
+    }
+
+    const fetchRequest = async () => {
+        const {data} = await server.get(`request/crud/${Id}`)
+        setUrgency(data.urgency)
+        setMemberId(data.member_id)
+        tempDocument = data.document
     }
 
     const listMembers = async () => {
@@ -34,9 +45,10 @@ function MemberCreate(props) {
         console.log(res);
         setMembers(res.data);
     }
-
-    useEffect(() => {
+    
+    useEffect(() => {        
         listMembers()
+        fetchRequest()
     }, [])
     
   return (
@@ -45,7 +57,7 @@ function MemberCreate(props) {
             <div className='px-[48px] border border-[##E2E5E9] rounded-md m-auto'>
                 <div className='space-y-6 py-[118px] px-[75px]'>
                     <div className='space-y-6'>
-                        <h1 className='text-3xl'>Create Request</h1>
+                        <h1 className='text-3xl'>Edit Request</h1>
                         <form className='space-y-8' onSubmit={handleSubmit}>
                             <div className='space-y-6'>
                                 {error && <p className=" text-red-500">{error}</p>}
@@ -84,4 +96,4 @@ function MemberCreate(props) {
   )
 }
 
-export default MemberCreate
+export default MemberEdit

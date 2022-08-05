@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import server from '../../lib/server'
 
 function ChangePassword(props) {
+    const navigate = useNavigate();
     const [error, setError] = useState('')
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
@@ -20,7 +22,7 @@ function ChangePassword(props) {
             setError('Error Occured')
             return
         }
-        props.history.push('/login')
+        navigate('/login')
     }
   return (
     <div className='flex h-screen w-screen'>

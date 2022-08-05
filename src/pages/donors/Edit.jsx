@@ -1,11 +1,12 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import server from '../../lib/server'
 
 function DonorEdit(props) {
     const {Id} = useParams()
+    const navigate = useNavigate();
     const [error, setError] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -41,7 +42,7 @@ function DonorEdit(props) {
         if(res.status != 200) {
             setError('Error occured.')
         } 
-        props.history.push('/doners')
+        navigate('/donors')
     }
 
     useEffect(() => {

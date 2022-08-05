@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import YourSvg from '../../assets/images/logo.svg';
 import server from '../../lib/server';
 
 function index(props) {
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -32,7 +33,7 @@ function index(props) {
         })
         console.log(res);
         if(res.status == 200)
-            props.history.push('/login')
+            navigate('/login')
     }
     return (
         <div className='h-screen w-screen flex items-center justify-center'>

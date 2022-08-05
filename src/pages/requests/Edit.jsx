@@ -1,11 +1,12 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import server from '../../lib/server'
 
 function MemberEdit(props) {
     const {Id} = useParams()
+    const navigate = useNavigate();
     const [error, setError] = useState('')
     const [members, setMembers] = useState([])
     const [urgency, setUrgency] = useState('')
@@ -29,7 +30,7 @@ function MemberEdit(props) {
             setError('Error occured.')
             return
         } 
-        props.history.push('/requests')
+        navigate('/requests')
     }
 
     const fetchRequest = async () => {

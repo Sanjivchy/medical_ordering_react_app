@@ -1,9 +1,11 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import server from '../../lib/server'
 
 function MedicineCreate(props) {
+    const navigate = useNavigate();
     const [error, setError] = useState('')
     const [requests, setRequests] = useState([])
     const [doners, setDoners] = useState([])
@@ -29,7 +31,7 @@ function MedicineCreate(props) {
         if(res.status != 200) {
             setError('Error occured.')
         } 
-        props.history.push('/medicines')
+        navigate('/medicines')
     }
 
     const listDoners = async () => {

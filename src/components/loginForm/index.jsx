@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import YourSvg from '../../assets/images/logo.svg';
 import server from '../../lib/server';
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../../store/auth/authSlice';
 
 function index(props) {
+    const navigate = useNavigate();
     const auth = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
@@ -24,7 +25,7 @@ function index(props) {
         console.log(res);
         if(res?.data) {
             dispatch(login({username: username, token: res.data.access, refresh: res.data.refresh}))
-            await props.history.push('/')
+            navigate('/')
         }
     }
     return (
