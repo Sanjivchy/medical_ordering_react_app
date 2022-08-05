@@ -6,19 +6,19 @@ import server from '../../lib/server'
 function DonorList() {
     const [donors, setDonors] = useState([])
 
-    const listMembers = async () => {
+    const listDonors = async () => {
         const res = await server.get('donar/list')
         console.log(res);
         setDonors(res.data);
     }
 
     useEffect(() => {
-        listMembers();
+        listDonors();
     }, [])
 
     const handleDelete = (id) => {
         const res = server.delete(`donar/crud/${id}`)
-        listMembers();
+        listDonors();
     }
     
   return (
