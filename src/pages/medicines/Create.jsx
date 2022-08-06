@@ -65,11 +65,12 @@ function MedicineCreate(props) {
     }, [])
 
     return (
-        <div className='space-y-6 ml-[255px] p-10 max-w-2xl'>
+        <div className='space-y-6 ml-[255px] p-10 max-w-5xl'>
             <h1 className='text-2xl'>Create Medicines</h1>
             <form className='space-y-8' onSubmit={handleSubmit}>
-                <div className='space-y-6'>
-                    {error && <p className=" text-red-500">{error}</p>}
+            {error && <p className=" text-red-500">{error}</p>}
+
+                <div className='grid grid-cols-2 gap-6'>
                     <div className='form-group flex flex-col'>
                         <label className='form-label'>Status</label>
                         <input className='form-control' type="text" value={status} onChange={(e) => setStatus(e.target.files[0])} />
@@ -105,7 +106,7 @@ function MedicineCreate(props) {
                         </select>
                     </div>
                 </div>
-                <button type='submit' className='bg-primary  text-base leading-6 font-medium text-white w-full py-[14px] rounded-lg'>Create</button>
+                <button type='submit' className='bg-primary  text-base leading-6 font-medium text-white px-10 py-[14px] rounded-lg'>Create</button>
             </form>
         </div>
     )
