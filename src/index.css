@@ -11,16 +11,31 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="date"],
+input[type="number"],
 textarea {
-  @apply border text-sm outline-none border-gray-10 rounded-lg px-4 py-[14px];
+  @apply border text-sm border-gray-10 rounded-lg px-4 py-[14px];
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
-input[type="date"]:focus textarea:focus {
+input[type="date"]:focus textarea:focus,select:focus {
   @apply shadow-md;
 }
 .form-label{
   @apply text-black mb-2 text-sm leading-5;
+}
+select{
+  @apply p-4 rounded-lg bg-transparent border border-gray-10;
+}
+
+.custom-table thead tr
+{
+  @apply bg-[#E4DFFF] w-full p-3 text-sm  rounded-md text-left;
+}
+.custom-table thead tr th{
+  @apply p-3 font-normal;
+}
+.custom-table tbody td{
+  @apply p-3 border-b border-gray-10
 }

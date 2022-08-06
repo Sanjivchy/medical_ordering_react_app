@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import server from '../../lib/server'
+import RequestMedicine from '../../layouts/main.js/requestMedicine/Index'
 
 function MemberCreate(props) {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ function MemberCreate(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if(!urgency || !memberId || !document) {
+        if (!urgency || !memberId || !document) {
             setError('All fields are mendatory.')
             return
         }
@@ -23,9 +24,9 @@ function MemberCreate(props) {
         formData.append('member_id', memberId)
         formData.append('document', document, document.name)
         const res = await server.post('request/list', formData)
-        if(res.status != 200) {
+        if (res.status != 200) {
             setError('Error occured.')
-        } 
+        }
         navigate('/requests')
     }
 
@@ -38,19 +39,19 @@ function MemberCreate(props) {
     useEffect(() => {
         listMembers()
     }, [])
-    
-  return (
-    <div className='flex h-screen w-screen'>
-        <div className=' flex-1 flex justify-center items-center'>
-            <div className='px-[48px] border border-[##E2E5E9] rounded-md m-auto'>
-                <div className='space-y-6 py-[118px] px-[75px]'>
-                    <div className='space-y-6'>
-                        <h1 className='text-3xl'>Create Request</h1>
-                        <form className='space-y-8' onSubmit={handleSubmit}>
-                            <div className='space-y-6'>
-                                {error && <p className=" text-red-500">{error}</p>}
+
+    return (
+        <div>
+            <div className='space-y-6 ml-[255px] p-20'>
+                <div className=' w-9/12 space-y-10'>
+                    <h1 className='text-3xl'>Request Medicine Section </h1>
+                    <form className='space-y-8' onSubmit={handleSubmit}>
+                        <RequestMedicine />
+                        <div className='space-y-6'>
+                            {error && <p className=" text-red-500">{error}</p>}
+                            <div className='grid grid-cols-2 gap-6'>
                                 <div className="form-group flex flex-col">
-                                    <label htmlFor="Urgency">Urgancy</label>
+                                    <label className='form-label' htmlFor="Urgency">Urgancy</label>
                                     <select name="urgency" id="urgency" value={urgency} onChange={(e) => setUrgency(e.target.value)}>
                                         <option>Select an Option</option>
                                         <option value="1">Urgent</option>
@@ -58,7 +59,7 @@ function MemberCreate(props) {
                                     </select>
                                 </div>
                                 <div className="form-group flex flex-col">
-                                    <label htmlFor="Urgency">Urgancy</label>
+                                    <label className='form-label' htmlFor="Urgency">Urgancy</label>
                                     <select name="urgency" id="urgency" value={memberId} onChange={(e) => setMemberId(e.target.value)}>
                                         <option>Select an Option</option>
                                         {members && members.map((member) => {
@@ -72,16 +73,30 @@ function MemberCreate(props) {
                                     <label className='form-label text-inherit'>Document</label>
                                     <input className='form-control' type="file" onChange={(e) => setDocument(e.target.files[0])} />
                                 </div>
-
                             </div>
-                            <button type='submit' className='bg-primary  text-base leading-6 font-medium text-white w-full py-[14px] rounded-lg'>Create</button>
-                        </form>
-                    </div>
+                            <button type='submit' className='bg-success text-white py-[6px] px-4 hover:bg-opacity-75 flex items-center space-x-2'>
+                                <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_147_2643)">
+                                        <rect width="14" height="14" transform="translate(0 0.400391)" fill="white" fill-opacity="0.01" />
+                                        <path d="M7.46838 1.77539H6.53088C6.44755 1.77539 6.40588 1.81706 6.40588 1.90039V6.80664H1.75C1.66667 6.80664 1.625 6.84831 1.625 6.93164V7.86914C1.625 7.95248 1.66667 7.99414 1.75 7.99414H6.40588V12.9004C6.40588 12.9837 6.44755 13.0254 6.53088 13.0254H7.46838C7.55172 13.0254 7.59338 12.9837 7.59338 12.9004V7.99414H12.25C12.3333 7.99414 12.375 7.95248 12.375 7.86914V6.93164C12.375 6.84831 12.3333 6.80664 12.25 6.80664H7.59338V1.90039C7.59338 1.81706 7.55172 1.77539 7.46838 1.77539Z" fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_147_2643">
+                                            <rect width="14" height="14" fill="white" transform="translate(0 0.400391)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <span>
+                                    Request Medicine
+                                </span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-  )
+
+    )
 }
 
 export default MemberCreate
