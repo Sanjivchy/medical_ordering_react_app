@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import server from '../../lib/server'
 
@@ -8,6 +9,10 @@ function ChangePassword(props) {
     const [error, setError] = useState('')
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
+    
+    const { token } = useSelector((state) => state.auth);
+    if (token) navigate("/");
+    
 
     const handleSubmit = async () => {
         if (!password && !password2) {

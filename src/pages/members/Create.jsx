@@ -3,7 +3,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import server from '../../lib/server'
 import YourSvg from '../../assets/images/logo.svg'
+import { useSelector } from 'react-redux';
 function MemberCreate(props) {
+    const {token} = useSelector(state => state.auth)
     const navigate = useNavigate();
     const [error, setError] = useState('')
     const [name, setName] = useState('')
@@ -29,12 +31,16 @@ function MemberCreate(props) {
         formData.append('pradesh_name', pradeshName)
         formData.append('district_name', districtName)
         formData.append('gaupalika_name', gaupalikaName)
-        formData.append('ward_number', wardNumber)
-        formData.append('phone_number', phoneNumber)
-        formData.append('mobile_number', mobileNumber)
+        formData.append('ward_no', wardNumber)
+        formData.append('phone_no', phoneNumber)
+        formData.append('mobile_no', mobileNumber)
         formData.append('related_person', relatedPerson)
         formData.append('document', document, document.name)
-        const res = await server.post('member/list', formData)
+        const res = await server.post('member/list', formData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         if (res.status != 200) {
             setError('Error occured.')
         }

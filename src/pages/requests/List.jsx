@@ -1,13 +1,19 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 import server from '../../lib/server'
 
 function RequestList() {
+    const {token} = useSelector(state => state.auth)
     const [requests, setRequests] = useState([])
 
     const listRequest = async () => {
-        const res = await server.get('request/list')
+        const res = await server.get('request/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         console.log(res);
         setRequests(res.data);
     }
@@ -16,7 +22,11 @@ function RequestList() {
     }, [])
 
     const handleDelete = async (id) => {
-        const res = await server.delete(`request/crud/${id}`)
+        const res = await server.delete(`request/crud/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         listRequest();
     }
 
@@ -54,7 +64,7 @@ function RequestList() {
                                             </div>
                                             <div className='invisible opacity-0 z-20 absolute -translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible transition-transform duration-300 '>
                                                 <div className='flex flex-col bg-white shadow-lg rounded-lg'>
-                                                    <a href="" className='text-sm text-primary px-6 py-3 hover:bg-gray-50'>View Detail</a>
+                                                    <Link to={`/requests/${request.id}/edit`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50'>View Detail</Link>
                                                     <Link to='/' href="" className='text-sm text-primary px-6 py-3 text-left hover:bg-gray-50' >Approve</Link>
                                                     <Link to={`/requests/${request.id}/edit`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50' >
                                                         Edit

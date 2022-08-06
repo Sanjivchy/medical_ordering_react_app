@@ -1,10 +1,12 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import server from '../../lib/server'
 
 function MemberEdit(props) {
+    const {token} = useSelector(state => state.auth)
     const {Id} = useParams()
     const navigate = useNavigate();
     const [error, setError] = useState('')
@@ -28,6 +30,10 @@ function MemberEdit(props) {
             quantity,
             request_id: requestId,
             interested: donerId
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         })
         if(res.status != 200) {
             setError('Error occured.')
@@ -37,7 +43,11 @@ function MemberEdit(props) {
     }
 
     const fetchRequest = async () => {
-        const {data} = await server.get(`medicine/crud/${Id}`)
+        const {data} = await server.get(`medicine/crud/${Id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         setStatus(data.status)
         setMedicineName(data.medicine_name)
         setQuantity(data.quantity)
@@ -45,12 +55,20 @@ function MemberEdit(props) {
         setDonerId(data.interested)
     }
     const listDoners = async () => {
-        const res = await server.get('donar/list')
+        const res = await server.get('donar/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         console.log(res);
         setDoners(res.data);
     }
     const listRequests = async () => {
-        const res = await server.get('request/list')
+        const res = await server.get('request/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         console.log(res);
         setRequests(res.data);
     }

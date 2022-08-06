@@ -1,13 +1,19 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import server from '../../lib/server'
 
 function MedicineList() {
+    const {token} = useSelector(state => state.auth)
     const [medicines, setMedicines] = useState([])
 
     const listRequest = async () => {
-        const res = await server.get('medicine/list')
+        const res = await server.get('medicine/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         console.log(res);
         setMedicines(res.data);
     }
@@ -17,7 +23,11 @@ function MedicineList() {
     }, [])
 
     const handleDelete = async (id) => {
-        const res = await server.delete(`medicine/crud/${id}`)
+        const res = await server.delete(`medicine/crud/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         listRequest();
     }
 
@@ -45,6 +55,9 @@ function MedicineList() {
                                     <td>{medicine.status}</td>
                                     <td>{medicine.quantity}</td>
                                     <td>
+                                        <Link to={`/medicines/${medicine.id}/`} className="border bg-yellow-500 text-white mr-1 px-4 py-1" >
+                                            Details
+                                        </Link>
                                         <Link to={`/medicines/${medicine.id}/edit`} className="border bg-yellow-500 text-white mr-1 px-4 py-1" >
                                             Edit
                                         </Link>

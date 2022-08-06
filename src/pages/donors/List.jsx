@@ -1,13 +1,19 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import server from '../../lib/server'
 
 function DonorList() {
+    const {token} = useSelector(state => state.auth)
     const [donors, setDonors] = useState([])
 
     const listDonors = async () => {
-        const res = await server.get('donar/list')
+        const res = await server.get('donar/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         console.log(res);
         setDonors(res.data);
     }
@@ -17,7 +23,11 @@ function DonorList() {
     }, [])
 
     const handleDelete = (id) => {
-        const res = server.delete(`donar/crud/${id}`)
+        const res = server.delete(`donar/crud/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         listDonors();
     }
 
@@ -25,9 +35,9 @@ function DonorList() {
         <>
             <div className='max-w-5xl ml-[255px] p-10  space-y-6'>
                 <h1 className="text-2xl">List Donor</h1>
-                {/* <Link to={`/donors/create`} className="border bg-blue-500 text-white mr-1 px-4 py-1" >
+                <Link to={`/donors/create`} className="border bg-blue-500 text-white mr-1 px-4 py-1" >
                     Create
-                </Link> */}
+                </Link>
                 <table className='custom-table table-fixed w-full'>
                     <thead>
                         <tr>
@@ -57,8 +67,8 @@ function DonorList() {
                                             </div>
                                             <div className='invisible opacity-0 z-20 absolute -translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible transition-transform duration-300 '>
                                                 <div className='flex flex-col bg-white shadow-lg rounded-lg'>
-                                                    <a href="" className='text-sm text-primary px-6 py-3 hover:bg-gray-50'>View Detail</a>
-                                                    <a href="" className='text-sm text-primary px-6 py-3 text-left hover:bg-gray-50' >Approve</a>
+                                                    <Link to={`/donors/${donor.id}/`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50'>View Detail</Link>
+                                                    <Link to="/" className='text-sm text-primary px-6 py-3 text-left hover:bg-gray-50' >Approve</Link>
                                                     <Link to={`/donors/${donor.id}/edit`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50' >
                                                         Edit
                                                     </Link>

@@ -1,13 +1,19 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import server from '../../lib/server'
 
 function MemberList() {
+    const navigate = useNavigate()
+    const {token} = useSelector(state => state.auth)
     const [members, setMembers] = useState([])
-
     const listMembers = async () => {
-        const res = await server.get('member/list')
+        const res = await server.get('member/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         console.log(res);
         setMembers(res.data);
     }
@@ -17,7 +23,11 @@ function MemberList() {
     }, [])
 
     const handleDelete = async (id) => {
-        const res = await server.delete(`member/crud/${id}`)
+        const res = await server.delete(`member/crud/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         listMembers();
     }
 
@@ -25,9 +35,9 @@ function MemberList() {
         <>
             <div className=' ml-[255px] p-10 space-y-6'>
                 <h1 className="text-2xl ">List Member</h1>
-                {/* <Link to={`/members/create`} className="border bg-blue-500 text-white mr-1 px-4 py-1" >
+                <Link to={`/members/create`} className="border bg-blue-500 text-white mr-1 px-4 py-1" >
                     Create
-                </Link> */}
+                </Link>
                 <table className='custom-table table-fixed w-full'>
                     <thead>
                         <tr>
@@ -57,7 +67,7 @@ function MemberList() {
                                             </div>
                                             <div className='invisible opacity-0 z-20 absolute -translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible transition-transform duration-300 '>
                                                 <div className='flex flex-col bg-white shadow-lg rounded-lg'>
-                                                    <a href="" className='text-sm text-primary px-6 py-3 hover:bg-gray-50'>View Detail</a>
+                                                    <Link to={`/members/${member.id}/`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50'>View Detail</Link>
                                                     <Link to={`/members/${member.id}/details`} href="" className='text-sm text-primary px-6 py-3 text-left hover:bg-gray-50' >Approve</Link>
                                                     <Link to={`/members/${member.id}/edit`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50' >
                                                         Edit

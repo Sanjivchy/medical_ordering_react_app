@@ -1,10 +1,12 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import server from '../../lib/server'
 
 function MemberEdit(props) {
+    const {token} = useSelector(state => state.auth)
     const {Id} = useParams()
     const navigate = useNavigate();
     const [error, setError] = useState('')
@@ -38,7 +40,11 @@ function MemberEdit(props) {
         formData.append('related_person', relatedPerson)
         if(document)
             formData.append('document', document, document.name)
-        const res = await server.put(`member/crud/${Id}`, formData)
+        const res = await server.put(`member/crud/${Id}`, formData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         if(res.status != 200) {
             setError('Error occured.')
             return
@@ -47,7 +53,11 @@ function MemberEdit(props) {
     }
 
     const fetchMember = async () => {
-        const {data} = await server.get(`member/crud/${Id}`)
+        const {data} = await server.get(`member/crud/${Id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         setName(data.name)
         setEmail(data.email)
         setPradeshName(data.pradesh_name)

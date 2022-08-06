@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [nav, setNav] = useState(true);
@@ -16,6 +17,11 @@ const NavBar = () => {
         <li className="p-4">Resources</li>
         <li className="p-4">About</li>
         <li className="p-4">Contact</li>
+        <li className="p-4">
+          <Link to="/members" >
+            Members
+          </Link>
+        </li>
       </ul>
       <div onClick={handleNav} className="block md:hidden">
         {/* responsive? */}

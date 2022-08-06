@@ -28,53 +28,53 @@ function index() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <a href="" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
+                                    <Link to="/requests" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
                                         <img src={HomeIcon} alt="settig icons" className=' group-hover:rotate-90 transition-all duration-500' />
                                         <span>Explore Request</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
+                                    <Link to="/interested" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
                                         <img src={HomeIcon} alt="settig icons" className=' group-hover:rotate-90 transition-all duration-500' />
                                         <span>My Interest</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 
                                 <li>
-                                    <a href="" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
+                                    <Link to="/medicines" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
                                         <img src={RequestIcon} alt="settig icons" className=' group-hover:rotate-90 transition-all duration-500' />
                                         <span>Request Medicine</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
+                                    <Link to="/requests" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
                                         <img src={RequestIcon} alt="settig icons" className=' group-hover:rotate-90 transition-all duration-500' />
                                         <span>My Request</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
+                                    <Link to="/donors" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
                                         <img src={HomeIcon} alt="settig icons" className=' group-hover:rotate-90 transition-all duration-500' />
                                         <span>Donar Request</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
+                                    <Link to="/members" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
                                         <img src={HomeIcon} alt="settig icons" className=' group-hover:rotate-90 transition-all duration-500' />
                                         <span>Member Request</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
+                                    <Link to="/medicines" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
                                         <img src={HomeIcon} alt="settig icons" className=' group-hover:rotate-90 transition-all duration-500' />
                                         <span>Medicine Requests</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
+                                    <Link to="/requests" className='flex items-center group space-x-5 text-white text-base leading-5 pl-[30px] py-[18px] transition-all duration-500   cursor-pointer hover:bg-[#3B8B6F]'>
                                         <img src={HomeIcon} alt="settig icons" className=' group-hover:rotate-90 transition-all duration-500' />
                                         <span>Request Status</span>
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

@@ -42,6 +42,9 @@ function RequestList() {
                         <td>{request.urgency}</td>
                         <td>{request.member_id}</td>
                         <td>
+                            <Link to={`/requests/${request.id}/`} className="border bg-yellow-500 text-white mr-1 px-4 py-1" >
+                                Detail
+                            </Link>
                             <Link to={`/requests/${request.id}/edit`} className="border bg-yellow-500 text-white mr-1 px-4 py-1" >
                                 Edit
                             </Link>

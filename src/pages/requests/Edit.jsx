@@ -2,9 +2,11 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 import server from '../../lib/server'
 
 function MemberEdit(props) {
+    const {token} = useSelector(state => state.auth)
     const { Id } = useParams()
     const navigate = useNavigate();
     const [error, setError] = useState('')
@@ -25,7 +27,11 @@ function MemberEdit(props) {
         formData.append('member_id', memberId)
         if (document)
             formData.append('document', document, document.name)
-        const res = await server.put(`request/crud/${Id}`, formData)
+        const res = await server.put(`request/crud/${Id}`, formData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         if (res.status != 200) {
             setError('Error occured.')
             return
@@ -34,14 +40,22 @@ function MemberEdit(props) {
     }
 
     const fetchRequest = async () => {
-        const { data } = await server.get(`request/crud/${Id}`)
+        const { data } = await server.get(`request/crud/${Id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         setUrgency(data.urgency)
         setMemberId(data.member_id)
         tempDocument = data.document
     }
 
     const listMembers = async () => {
-        const res = await server.get('member/list')
+        const res = await server.get('member/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         console.log(res);
         setMembers(res.data);
     }

@@ -3,9 +3,11 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import server from '../../lib/server'
+import { useSelector } from 'react-redux';
 import RequestMedicine from '../../layouts/main.js/requestMedicine/Index'
 
 function MemberCreate(props) {
+    const {token} = useSelector(state => state.auth)
     const navigate = useNavigate();
     const [error, setError] = useState('')
     const [members, setMembers] = useState([])
@@ -23,7 +25,11 @@ function MemberCreate(props) {
         formData.append('urgency', urgency)
         formData.append('member_id', memberId)
         formData.append('document', document, document.name)
-        const res = await server.post('request/list', formData)
+        const res = await server.post('request/list', formData, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         if (res.status != 200) {
             setError('Error occured.')
         }
@@ -31,7 +37,11 @@ function MemberCreate(props) {
     }
 
     const listMembers = async () => {
-        const res = await server.get('member/list')
+        const res = await server.get('member/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         console.log(res);
         setMembers(res.data);
     }

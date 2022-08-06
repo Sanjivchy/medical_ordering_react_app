@@ -1,10 +1,12 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import server from '../../lib/server'
 
 function MedicineCreate(props) {
+    const {token} = useSelector(state => state.auth)
     const navigate = useNavigate();
     const [error, setError] = useState('')
     const [requests, setRequests] = useState([])
@@ -27,6 +29,10 @@ function MedicineCreate(props) {
             quantity,
             request_id: requestId,
             interested: donerId
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         })
         if (res.status != 200) {
             setError('Error occured.')
@@ -35,12 +41,20 @@ function MedicineCreate(props) {
     }
 
     const listDoners = async () => {
-        const res = await server.get('donar/list')
+        const res = await server.get('donar/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         console.log(res);
         setDoners(res.data);
     }
     const listRequests = async () => {
-        const res = await server.get('request/list')
+        const res = await server.get('request/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         console.log(res);
         setRequests(res.data);
     }

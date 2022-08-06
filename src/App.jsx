@@ -7,22 +7,28 @@ import Dashboard from './pages/dashboard/Index'
 
 import MemberCreate from './pages/members/Create'
 import MemberEdit from './pages/members/Edit'
+import MemberView from './pages/members/View'
 import MemberList from './pages/members/List'
 
 import DonorCreate from './pages/donors/Create'
 import DonorEdit from './pages/donors/Edit'
+import DonorView from './pages/donors/View'
 import DonorList from './pages/donors/List'
 
 import RequestCreate from './pages/requests/Create'
 import RequestEdit from './pages/requests/Edit'
+import RequestView from './pages/requests/View'
 import RequestList from './pages/requests/List'
 
 import MedicineCreate from './pages/medicines/Create'
 import MedicineEdit from './pages/medicines/Edit'
+import MedicineView from './pages/medicines/View'
 import MedicineList from './pages/medicines/List'
 import Page404 from './pages/Page404'
+import { useSelector } from "react-redux";
 
 function App() {
+  const {token} = useSelector(state => state.auth)
   return (
     <>
     <Routes>
@@ -31,21 +37,30 @@ function App() {
       <Route exact path="/register" element={<Register />} />
       <Route exact path="/change-password" element={<ChangePassword />} />
 
-      <Route exact path="/members" element={<MemberList />} />
-      <Route exact path="/members/create" element={<MemberCreate />} />
-      <Route exact path="/members/:Id/edit" element={<MemberEdit />} />
+      {token && (
+        <>
+          <Route exact path="/members" element={<MemberList />} />
+          <Route exact path="/members/create" element={<MemberCreate />} />
+          <Route exact path="/members/:Id/" element={<MemberView />} />
+          <Route exact path="/members/:Id/edit" element={<MemberEdit />} />
 
-      <Route exact path="/donors" element={<DonorList />} />
-      <Route exact path="/donors/create" element={<DonorCreate />} />
-      <Route exact path="/donors/:Id/edit" element={<DonorEdit />} />
+          <Route exact path="/donors" element={<DonorList />} />
+          <Route exact path="/donors/create" element={<DonorCreate />} />
+          <Route exact path="/donors/:Id/" element={<DonorView />} />
+          <Route exact path="/donors/:Id/edit" element={<DonorEdit />} />
 
-      <Route exact path="/requests" element={<RequestList />} />
-      <Route exact path="/requests/create" element={<RequestCreate />} />
-      <Route exact path="/requests/:Id/edit" element={<RequestEdit />} />
-      
-      <Route exact path="/medicines" element={<MedicineList />} />
-      <Route exact path="/medicines/create" element={<MedicineCreate />} />
-      <Route exact path="/medicines/:Id/edit" element={<MedicineEdit />} />
+          <Route exact path="/requests" element={<RequestList />} />
+          <Route exact path="/requests/create" element={<RequestCreate />} />
+          <Route exact path="/requests/:Id/" element={<RequestView />} />
+          <Route exact path="/requests/:Id/edit" element={<RequestEdit />} />
+          
+          <Route exact path="/medicines" element={<MedicineList />} />
+          <Route exact path="/medicines/create" element={<MedicineCreate />} />
+          <Route exact path="/medicines/:Id/" element={<MedicineView />} />
+          <Route exact path="/medicines/:Id/edit" element={<MedicineEdit />} />
+        </>
+      )
+      }
 
       <Route path="*" element={<Page404 />} />
     </Routes>
