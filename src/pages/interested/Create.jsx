@@ -1,42 +1,61 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import server from '../../lib/server'
 
 function MemberCreate(props) {
+    const {token} = useSelector(state => state.auth)
     const navigate = useNavigate();
     const [error, setError] = useState('')
-    const [members, setMembers] = useState([])
-    const [urgency, setUrgency] = useState('')
-    const [memberId, setMemberId] = useState('')
-    const [document, setDocument] = useState()
+    const [donors, setDonors] = useState([])
+    const [medicines, setMedicines] = useState([])
+    const [donorId, setDonorId] = useState('')
+    const [medicineId, setmedicineId] = useState('')
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if(!urgency || !memberId || !document) {
+        if(!donorId || !medicineId) {
             setError('All fields are mendatory.')
             return
         }
-        const formData = new FormData()
-        formData.append('urgency', urgency)
-        formData.append('member_id', memberId)
-        formData.append('document', document, document.name)
-        const res = await server.post('request/list', formData)
+        const res = await server.post('interest/list', {
+            medicine: medicineId,
+            interested: donorId
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         if(res.status != 200) {
             setError('Error occured.')
         } 
         navigate('/interested')
     }
 
-    const listMembers = async () => {
-        const res = await server.get('member/list')
+    const listMedicines = async () => {
+        const res = await server.get('medicine/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         console.log(res);
-        setMembers(res.data);
+        setMedicines(res.data);
+    }
+    const listDonors = async () => {
+        const res = await server.get('doner/list', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        console.log(res);
+        setDonors(res.data);
     }
 
     useEffect(() => {
-        listMembers()
+        listMedicines()
+        listDonors()
     }, [])
     
   return (
@@ -45,32 +64,31 @@ function MemberCreate(props) {
             <div className='px-[48px] border border-[##E2E5E9] rounded-md m-auto'>
                 <div className='space-y-6 py-[118px] px-[75px]'>
                     <div className='space-y-6'>
-                        <h1 className='text-3xl'>Create Request</h1>
+                        <h1 className='text-3xl'>Create Interested</h1>
                         <form className='space-y-8' onSubmit={handleSubmit}>
                             <div className='space-y-6'>
                                 {error && <p className=" text-red-500">{error}</p>}
                                 <div className="form-group flex flex-col">
-                                    <label htmlFor="Urgency">Urgancy</label>
-                                    <select name="urgency" id="urgency" value={urgency} onChange={(e) => setUrgency(e.target.value)}>
+                                    <label htmlFor="medicine">Medicine</label>
+                                    <select name="medicine" id="medicine" value={medicineId} onChange={(e) => setmedicineId(e.target.value)}>
                                         <option>Select an Option</option>
-                                        <option value="1">Urgent</option>
-                                        <option value="0">Less Urgent</option>
-                                    </select>
-                                </div>
-                                <div className="form-group flex flex-col">
-                                    <label htmlFor="Urgency">Urgancy</label>
-                                    <select name="urgency" id="urgency" value={memberId} onChange={(e) => setMemberId(e.target.value)}>
-                                        <option>Select an Option</option>
-                                        {members && members.map((member) => {
+                                        {medicines && medicines.map((medicine) => {
                                             return (
-                                                <option key={member.id} value={member.id}>{member.name}</option>
+                                                <option key={medicine.id} value={medicine.id}>{medicine.medicine_name}</option>
                                             )
                                         })}
                                     </select>
                                 </div>
-                                <div className='form-group flex flex-col'>
-                                    <label className='form-label text-inherit'>Document</label>
-                                    <input className='form-control' type="file" onChange={(e) => setDocument(e.target.files[0])} />
+                                <div className="form-group flex flex-col">
+                                    <label htmlFor="donor">Interest</label>
+                                    <select name="donor" id="donor" value={donorId} onChange={(e) => setDonorId(e.target.value)}>
+                                        <option>Select an Option</option>
+                                        {donors && donors.map((donor) => {
+                                            return (
+                                                <option key={donor.id} value={donor.id}>{donor.name}</option>
+                                            )
+                                        })}
+                                    </select>
                                 </div>
 
                             </div>

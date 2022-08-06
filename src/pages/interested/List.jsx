@@ -1,64 +1,87 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import server from '../../lib/server'
+import React from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import server from "../../lib/server";
 
-function RequestList() {
-    const [requests, setRequests] = useState([])
+function InterestedList() {
+  const { token } = useSelector((state) => state.auth);
+  const [interested, setInterested] = useState([]);
 
-    const listRequest = async () => {
-        const res = await server.get('request/list')
-        console.log(res);
-        setRequests(res.data);
-    }
+  const listInterested = async () => {
+    const res = await server.get("interest/list", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(res);
+    setInterested(res.data);
+  };
 
-    useEffect(() => {
-        listRequest();
-    }, [])
+  useEffect(() => {
+    listInterested();
+  }, []);
 
-    const handleDelete = async (id) => {
-        const res = await server.delete(`request/crud/${id}`)
-        listRequest();
-    }
-    
+  const handleDelete = async (id) => {
+    const res = await server.delete(`interest/crud/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    listInterested();
+  };
+
   return (
     <>
-    <h1 className="text-3xl">List Requests</h1>
-        <Link to={`/requests/create`} className="border bg-blue-500 text-white mr-1 px-4 py-1" >
-            Create
-        </Link>
-        <table className='table'>
-            <thead>
-                <tr className='font-semibold'>
-                    <td>Urgency</td>
-                    <td>MemberId</td>
-                    <td>Actions</td>
+      <h1 className="text-3xl">List Interested</h1>
+      <Link
+        to={`/interested/create`}
+        className="border bg-blue-500 text-white mr-1 px-4 py-1"
+      >
+        Create
+      </Link>
+      <table className="table">
+        <thead>
+          <tr className="font-semibold">
+            <td>doner ID</td>
+            <td>medicine</td>
+            <td>Actions</td>
+          </tr>
+        </thead>
+        <tbody>
+          {interested &&
+            interested.map((interest, key) => {
+              return (
+                <tr key={key}>
+                  <td>{interest.interested}</td>
+                  <td>{interest.medicine}</td>
+                  <td>
+                    <Link
+                      to={`/interested/${interest.id}/`}
+                      className="border bg-yellow-500 text-white mr-1 px-4 py-1"
+                    >
+                      Detail
+                    </Link>
+                    <Link
+                      to={`/interested/${interest.id}/edit`}
+                      className="border bg-yellow-500 text-white mr-1 px-4 py-1"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      className="border bg-red-500 text-white px-4 py-1"
+                      onClick={() => handleDelete(interest.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
-            </thead>
-            <tbody>
-                {requests && requests.map((request, key) => {
-                    return (
-                    <tr key={key}>
-                        <td>{request.urgency}</td>
-                        <td>{request.member_id}</td>
-                        <td>
-                            <Link to={`/requests/${request.id}/`} className="border bg-yellow-500 text-white mr-1 px-4 py-1" >
-                                Detail
-                            </Link>
-                            <Link to={`/requests/${request.id}/edit`} className="border bg-yellow-500 text-white mr-1 px-4 py-1" >
-                                Edit
-                            </Link>
-                            <button className="border bg-red-500 text-white px-4 py-1" onClick={() => handleDelete(request.id)}>
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    )
-                })}
-            </tbody>
-        </table>
+              );
+            })}
+        </tbody>
+      </table>
     </>
-  )
+  );
 }
 
-export default RequestList
+export default InterestedList;

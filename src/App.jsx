@@ -24,6 +24,12 @@ import MedicineCreate from './pages/medicines/Create'
 import MedicineEdit from './pages/medicines/Edit'
 import MedicineView from './pages/medicines/View'
 import MedicineList from './pages/medicines/List'
+
+import InterestedCreate from './pages/interested/Create'
+import InterestedEdit from './pages/interested/Edit'
+import InterestedView from './pages/interested/View'
+import InterestedList from './pages/interested/List'
+
 import Page404 from './pages/Page404'
 import { useSelector } from "react-redux";
 
@@ -58,6 +64,11 @@ function App() {
           <Route exact path="/medicines/create" element={<MedicineCreate />} />
           <Route exact path="/medicines/:Id/" element={<MedicineView />} />
           <Route exact path="/medicines/:Id/edit" element={<MedicineEdit />} />
+          
+          <Route exact path="/interested" element={<InterestedList />} />
+          <Route exact path="/interested/create" element={<InterestedCreate />} />
+          <Route exact path="/interested/:Id/" element={<InterestedView />} />
+          <Route exact path="/interested/:Id/edit" element={<InterestedEdit />} />
         </>
       )
       }
