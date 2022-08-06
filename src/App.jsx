@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import ChangePassword from "./pages/auth/ChangePassword";
@@ -20,7 +20,6 @@ import RequestList from './pages/requests/List'
 import MedicineCreate from './pages/medicines/Create'
 import MedicineEdit from './pages/medicines/Edit'
 import MedicineList from './pages/medicines/List'
-
 import Page404 from './pages/Page404'
 
 function App() {

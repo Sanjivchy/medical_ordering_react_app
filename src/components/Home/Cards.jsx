@@ -13,7 +13,7 @@ const Cards = () => {
           <p className="text-center">Full Stack Developer</p>
           <div className=" content-end">
             <AiFillFacebook className="  my-6 rounded-full" size={40} />
-            
+
           </div>
         </div>
         <div className="w-full flex flex-col p-4 my-4  ">
