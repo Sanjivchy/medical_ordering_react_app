@@ -5,9 +5,9 @@ const Hero = () => {
   return (
     <div className="text-white">
       <div className="max-w-[800px] mt-[-96px] w-full h-screen mx-auto text-center flex flex-col justify-center">
-        <p className=" text-[#00df9a] font-bold-p-2"> WE Heal You.</p>
+        <p className=" text-[#00df9a] font-bold-p-2"> We Heal You.</p>
         <h1 className="md:text-7xl sm:text-6xl text-4xl font-bold md:py-6"> You Are Protected.</h1>
-        <div className="">
+        <div>
           <p className="md:text-5xl sm:text-4xl text-xl font-bold py-2 ">
             Fast, Flexible Financing for Your{" "}
           </p>
