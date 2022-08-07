@@ -31,7 +31,7 @@ function index(props) {
       password,
       password2,
     });
-    console.log(res);
+    // console.log(res);
     if (res.status == 200) navigate("/login");
   };
   return (

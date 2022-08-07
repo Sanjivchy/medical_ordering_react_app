@@ -60,7 +60,7 @@ function MemberCreate(props) {
                 Authorization: `Bearer ${token}`
             }
         })
-        console.log(res);
+        // console.log(res);
         setMembers(res.data);
     }
 

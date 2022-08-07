@@ -6,7 +6,7 @@ import YourSvg from '../../assets/images/logo.svg'
 import { useSelector } from 'react-redux';
 
 function DonorCreate(props) {
-    const {token} = useSelector(state => state.auth)
+    const { token } = useSelector(state => state.auth)
     const navigate = useNavigate();
     const [error, setError] = useState('')
     const [name, setName] = useState('')
@@ -59,8 +59,8 @@ function DonorCreate(props) {
                 </div>
                 <h1 className='text-2xl'>Doner Registration</h1>
                 <form className='space-y-8' onSubmit={handleSubmit}>
+                    {error && <p className=" text-red-500">{error}</p>}
                     <div className='grid md:grid-cols-2 gap-6'>
-                        {error && <p className=" text-red-500">{error}</p>}
                         <div className='form-group flex flex-col'>
                             <label className='form-label'>Name</label>
                             <input className='form-control' type="text" placeholder='Enter your name' value={name} onChange={(e) => setName(e.target.value)} />

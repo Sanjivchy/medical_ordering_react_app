@@ -51,7 +51,7 @@ function MemberEdit(props) {
                 Authorization: `Bearer ${token}`
             }
         })
-        console.log(res);
+        // console.log(res);
         setMedicines(res.data);
     }
     const listDonors = async () => {
@@ -60,7 +60,7 @@ function MemberEdit(props) {
                 Authorization: `Bearer ${token}`
             }
         })
-        console.log(res);
+        // console.log(res);
         setDonors(res.data);
     }
     

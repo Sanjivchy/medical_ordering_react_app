@@ -42,13 +42,13 @@ function App() {
   const {token} = useSelector(state => state.auth)
 
   const fetchUserData = async () => {
-    console.log('fetch data');
+    // console.log('fetch data');
     const res = await server.get('userprofile/', {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
-    console.log(res.data, 'user');
+    // console.log(res.data, 'user');
     dispatch(setUser(res.data))
   }
 

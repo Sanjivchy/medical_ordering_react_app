@@ -14,7 +14,7 @@ function InterestedList() {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(res);
+    // console.log(res);
     setInterested(res.data);
   };
 

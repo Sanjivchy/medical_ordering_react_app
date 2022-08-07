@@ -14,7 +14,7 @@ function RequestList() {
                 Authorization: `Bearer ${token}`
             }
         })
-        console.log(res);
+        // console.log(res);
         setRequests(res.data);
     }
     useEffect(() => {
@@ -64,7 +64,7 @@ function RequestList() {
                                             </div>
                                             <div className='invisible opacity-0 z-20 absolute -translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible transition-transform duration-300 '>
                                                 <div className='flex flex-col bg-white shadow-lg rounded-lg'>
-                                                    <Link to={`/requests/${request.id}/edit`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50'>View Detail</Link>
+                                                    <Link to={`/requests/${request.id}/`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50'>View Detail</Link>
                                                     <Link to='/' href="" className='text-sm text-primary px-6 py-3 text-left hover:bg-gray-50' >Approve</Link>
                                                     <Link to={`/requests/${request.id}/edit`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50' >
                                                         Edit
