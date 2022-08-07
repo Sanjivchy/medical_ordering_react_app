@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-function App() {
-    const [inputList, setInputList] = useState([{ medicineName: "", medicineQuantity: "" }]);
+function RequestMedicine({inputList, setInputList}) {
     const handleInputChange = (e, index) => {
         const { name, value } = e.target;
         const list = [...inputList];
@@ -19,7 +18,7 @@ function App() {
 
     return (
         <div className="border border-gray-10 px-10 py-6 rounded-lg ">
-            {/* <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div> */}
+            <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div>
             {inputList.map((x, i) => {
                 return (
                     <div className="flex flex-col gap-6 divide-y">
@@ -36,6 +35,7 @@ function App() {
                                     value={x.medicineName}
                                     onChange={e => handleInputChange(e, i)}
                                     type='text'
+                                    required
                                 />
                             </div>
                             <div className="flex items-center">
@@ -47,6 +47,7 @@ function App() {
                                         value={x.medicineQuantity}
                                         onChange={e => handleInputChange(e, i)}
                                         type="number"
+                                        required
                                     />
                                 </div>
                                 <div className="mt-[30px] ml-4">
@@ -77,4 +78,4 @@ function App() {
     );
 }
 
-export default App;
+export default RequestMedicine;

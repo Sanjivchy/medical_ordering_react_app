@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import RequestMedicine from '../../layouts/main.js/requestMedicine/Index'
 
 function MemberCreate(props) {
+    const [inputList, setInputList] = useState([{ medicineName: "", medicineQuantity: "" }]);
     const {token} = useSelector(state => state.auth)
     const navigate = useNavigate();
     const [error, setError] = useState('')
@@ -21,18 +22,35 @@ function MemberCreate(props) {
             setError('All fields are mendatory.')
             return
         }
+        // const sl = []
+        // const formData2 = new FormData()
+        // inputList.forEach(input => {
+            
+        // });
+        // inputList.map(input => {
+        //     return formData2.append()
+        // })
         const formData = new FormData()
         formData.append('urgency', urgency)
         formData.append('member_id', memberId)
         formData.append('document', document, document.name)
-        const res = await server.post('request/list', formData, {
-            headers: {
-                Authorization: `Bearer ${token}`
+        formData.append('medicines', JSON.stringify(inputList))
+        // const res = await server.post('request/list', formData, {
+        //     headers: {
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // })
+        // if (res.status != 200) {
+        //     setError('Error occured.')
+        // }
+        const res = await server.post(
+            "apply-medicine-request/", formData,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             }
-        })
-        if (res.status != 200) {
-            setError('Error occured.')
-        }
+          )
         navigate('/requests')
     }
 
@@ -56,7 +74,8 @@ function MemberCreate(props) {
                 <div className=' w-9/12 space-y-10'>
                     <h1 className='text-3xl'>Request Medicine Section </h1>
                     <form className='space-y-8' onSubmit={handleSubmit}>
-                        <RequestMedicine />
+                        
+                        <RequestMedicine inputList={inputList} setInputList={setInputList} />
                         <div className='space-y-6'>
                             {error && <p className=" text-red-500">{error}</p>}
                             <div className='grid grid-cols-2 gap-6'>
