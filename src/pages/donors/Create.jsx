@@ -60,7 +60,7 @@ function DonorCreate(props) {
                         {error && <p className=" text-red-500">{error}</p>}
                         <div className='form-group flex flex-col'>
                             <label className='form-label'>Name</label>
-                            <input className='form-control' type="text" placeholder='Enter your email' value={name} onChange={(e) => setName(e.target.value)} />
+                            <input className='form-control' type="text" placeholder='Enter your name' value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className='form-group flex flex-col'>
                             <label className='form-label'>Email Address</label>
@@ -68,35 +68,35 @@ function DonorCreate(props) {
                         </div>
                         <div className='form-group flex flex-col'>
                             <label className='form-label'>Pradesh Name</label>
-                            <input className='form-control' type="text" placeholder='Enter your email' value={pradeshName} onChange={(e) => setPradeshName(e.target.value)} />
+                            <input className='form-control' type="text" placeholder='Enter your Pradesh' value={pradeshName} onChange={(e) => setPradeshName(e.target.value)} />
                         </div>
                         <div className='form-group flex flex-col'>
                             <label className='form-label'>District Name</label>
-                            <input className='form-control' type="text" placeholder='Enter your email' value={districtName} onChange={(e) => setDistrictName(e.target.value)} />
+                            <input className='form-control' type="text" placeholder='Enter your District' value={districtName} onChange={(e) => setDistrictName(e.target.value)} />
                         </div>
                         <div className='form-group flex flex-col'>
                             <label className='form-label'>Gaupalika Name</label>
-                            <input className='form-control' type="text" placeholder='Enter your email' value={gaupalikaName} onChange={(e) => setGaupalikaName(e.target.value)} />
+                            <input className='form-control' type="text" placeholder='Enter your Gaupalika' value={gaupalikaName} onChange={(e) => setGaupalikaName(e.target.value)} />
                         </div>
                         <div className='form-group flex flex-col'>
                             <label className='form-label'>Ward Number</label>
-                            <input className='form-control' type="number" placeholder='Enter your email' value={wardNumber} onChange={(e) => setWardNumber(e.target.value)} />
+                            <input className='form-control' type="number" placeholder='Enter your Ward_No' value={wardNumber} onChange={(e) => setWardNumber(e.target.value)} />
                         </div>
                         <div className='form-group flex flex-col'>
                             <label className='form-label'>Phone Number</label>
-                            <input className='form-control' type="number" placeholder='Enter your email' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <input className='form-control' type="number" placeholder='Enter your Phone Number' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                         </div>
                         <div className='form-group flex flex-col'>
                             <label className='form-label'>Mobile Number</label>
-                            <input className='form-control' type="number" placeholder='Enter your email' value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
+                            <input className='form-control' type="number" placeholder='Enter your Mobile Number' value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
                         </div>
                         <div className='form-group flex flex-col'>
                             <label className='form-label'>Related Person</label>
-                            <input className='form-control' type="text" placeholder='Enter your email' value={relatedPerson} onChange={(e) => setRelatedPerson(e.target.value)} />
+                            <input className='form-control' type="text" placeholder='Enter your Related Person' value={relatedPerson} onChange={(e) => setRelatedPerson(e.target.value)} />
                         </div>
                         <div className='form-group flex flex-col'>
                             <label className='form-label'>Document</label>
-                            <input className='form-control' type="file" placeholder='Enter your email' onChange={(e) => setDocument(e.target.files[0])} />
+                            <input className='form-control' type="file" placeholder='Upload your Document' onChange={(e) => setDocument(e.target.files[0])} />
                         </div>
                         <button type='submit' className='bg-primary  text-base leading-6 font-medium text-white  py-[14px] rounded-lg'>Register</button>
                     </div>

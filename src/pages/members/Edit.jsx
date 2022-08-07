@@ -86,7 +86,7 @@ function MemberEdit(props) {
                                 {error && <p className=" text-red-500">{error}</p>}
                                 <div className='form-group flex flex-col'>
                                     <label className='form-label'>Name</label>
-                                    <input className='form-control' type="text" placeholder='Enter your email' value={name} onChange={(e) => setName(e.target.value)} />
+                                    <input className='form-control' type="text" placeholder='Enter your name' value={name} onChange={(e) => setName(e.target.value)} />
                                 </div>
                                 <div className='form-group flex flex-col'>
                                     <label className='form-label'>Email Address</label>
@@ -94,35 +94,35 @@ function MemberEdit(props) {
                                 </div>
                                 <div className='form-group flex flex-col'>
                                     <label className='form-label'>Pradesh Name</label>
-                                    <input className='form-control' type="text" placeholder='Enter your email' value={pradeshName} onChange={(e) => setPradeshName(e.target.value)} />
+                                    <input className='form-control' type="text" placeholder='Enter your pradesh' value={pradeshName} onChange={(e) => setPradeshName(e.target.value)} />
                                 </div>
                                 <div className='form-group flex flex-col'>
                                     <label className='form-label'>District Name</label>
-                                    <input className='form-control' type="text" placeholder='Enter your email' value={districtName} onChange={(e) => setDistrictName(e.target.value)} />
+                                    <input className='form-control' type="text" placeholder='Enter your district' value={districtName} onChange={(e) => setDistrictName(e.target.value)} />
                                 </div>
                                 <div className='form-group flex flex-col'>
                                     <label className='form-label'>Gaupalika Name</label>
-                                    <input className='form-control' type="text" placeholder='Enter your email' value={gaupalikaName} onChange={(e) => setGaupalikaName(e.target.value)} />
+                                    <input className='form-control' type="text" placeholder='Enter your gaupalika' value={gaupalikaName} onChange={(e) => setGaupalikaName(e.target.value)} />
                                 </div>
                                 <div className='form-group flex flex-col'>
                                     <label className='form-label'>Ward Number</label>
-                                    <input className='form-control' type="number" placeholder='Enter your email' value={wardNumber} onChange={(e) => setWardNumber(e.target.value)} />
+                                    <input className='form-control' type="number" placeholder='Enter your ward_no' value={wardNumber} onChange={(e) => setWardNumber(e.target.value)} />
                                 </div>
                                 <div className='form-group flex flex-col'>
                                     <label className='form-label'>Phone Number</label>
-                                    <input className='form-control' type="number" placeholder='Enter your email' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                                    <input className='form-control' type="number" placeholder='Enter your phone number' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
                                 </div>
                                 <div className='form-group flex flex-col'>
                                     <label className='form-label'>Mobile Number</label>
-                                    <input className='form-control' type="number" placeholder='Enter your email' value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
+                                    <input className='form-control' type="number" placeholder='Enter your mobile number' value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
                                 </div>
                                 <div className='form-group flex flex-col'>
                                     <label className='form-label'>Related Person</label>
-                                    <input className='form-control' type="text" placeholder='Enter your email' value={relatedPerson} onChange={(e) => setRelatedPerson(e.target.value)} />
+                                    <input className='form-control' type="text" placeholder='Enter your related person' value={relatedPerson} onChange={(e) => setRelatedPerson(e.target.value)} />
                                 </div>
                                 <div className='form-group flex flex-col'>
                                     <label className='form-label'>Document</label>
-                                    <input className='form-control' type="file" placeholder='Enter your email' onChange={(e) => setDocument(e.target.files[0])} />
+                                    <input className='form-control' type="file" placeholder='Upload your document here' onChange={(e) => setDocument(e.target.files[0])} />
                                 </div>
 
                             </div>

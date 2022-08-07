@@ -73,15 +73,15 @@ function MedicineCreate(props) {
                 <div className='grid grid-cols-2 gap-6'>
                     <div className='form-group flex flex-col'>
                         <label className='form-label'>Status</label>
-                        <input className='form-control' type="text" value={status} onChange={(e) => setStatus(e.target.files[0])} />
+                        <input className='form-control' type="text" placeholder='Enter the status ' value={status} onChange={(e) => setStatus(e.target.files[0])} />
                     </div>
                     <div className='form-group flex flex-col'>
                         <label className='form-label'>Medicine Name</label>
-                        <input className='form-control' type="text" value={medicineName} onChange={(e) => setMedicineName(e.target.files[0])} />
+                        <input className='form-control' type="text" placeholder='Enter medicine name' value={medicineName} onChange={(e) => setMedicineName(e.target.files[0])} />
                     </div>
                     <div className='form-group flex flex-col'>
                         <label className='form-label'>Quantity</label>
-                        <input className='form-control' type="number" value={quantity} onChange={(e) => setQuantity(e.target.files[0])} />
+                        <input className='form-control' type="number" placeholder='Enter your quality' value={quantity} onChange={(e) => setQuantity(e.target.files[0])} />
                     </div>
                     <div className="form-group flex flex-col">
                         <label htmlFor="request">Request</label>

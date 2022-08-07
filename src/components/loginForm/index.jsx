@@ -67,7 +67,7 @@ function index(props) {
                                     {error && <p className=" text-red-500">{error}</p>}
                                     <div className='form-group flex flex-col'>
                                         <label className='form-label'>Username</label>
-                                        <input className='form-control' type="text" placeholder='Enter your email' value={username} onChange={(e) => setUsername(e.target.value)} />
+                                        <input className='form-control' type="text" placeholder='Enter your username' value={username} onChange={(e) => setUsername(e.target.value)} />
                                     </div>
                                     <div className='form-group flex flex-col'>
                                         <label className='form-label'>Password</label>
