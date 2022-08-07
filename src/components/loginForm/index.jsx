@@ -4,16 +4,27 @@ import { Link, useNavigate } from 'react-router-dom';
 import YourSvg from '../../assets/images/logo.svg';
 import server from '../../lib/server';
 import { useSelector, useDispatch } from 'react-redux'
-import { login } from '../../store/auth/authSlice';
+import { login, setUser } from '../../store/auth/authSlice';
 
 function index(props) {
     const navigate = useNavigate();
-    const auth = useSelector(state => state.auth)
+    const {token} = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    
+    const fetchUserData = async () => {
+        console.log('fetch data');
+        const res = await server.get('userprofile/', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log(res.data, 'user');
+        dispatch(setUser(res.data))
+      }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -25,6 +36,7 @@ function index(props) {
         console.log(res);
         if(res?.data) {
             dispatch(login({username: username, token: res.data.access, refresh: res.data.refresh}))
+            fetchUserData()
             navigate('/')
         }
     }

@@ -31,10 +31,45 @@ import InterestedView from './pages/interested/View'
 import InterestedList from './pages/interested/List'
 
 import Page404 from './pages/Page404'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import server from "./lib/server";
+import { setUser } from "./store/auth/authSlice";
 
 function App() {
+  const dispatch = useDispatch()
   const {token} = useSelector(state => state.auth)
+
+  const fetchUserData = async () => {
+    console.log('fetch data');
+    const res = await server.get('userprofile/', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    console.log(res.data, 'user');
+    dispatch(setUser(res.data))
+  }
+
+  useEffect(() => {
+    // if(token) fetchUserData()
+    if (token) {
+      fetchUserData()
+      setInterval(() => {
+        fetchUserData()
+      },[60000])
+    }
+  }, [])
+  
+  useEffect(() => {
+    if (token) {
+      fetchUserData()
+      setInterval(() => {
+        fetchUserData()
+      },[60000])
+    }
+  }, [token])
+  
   return (
     <>
     <Routes>
