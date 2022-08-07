@@ -11,7 +11,7 @@ function MedicineCreate(props) {
     const [error, setError] = useState('')
     const [requests, setRequests] = useState([])
     const [doners, setDoners] = useState([])
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('WAITING')
     const [medicineName, setMedicineName] = useState('')
     const [quantity, setQuantity] = useState('')
     const [requestId, setRequestId] = useState('')
@@ -71,17 +71,17 @@ function MedicineCreate(props) {
             {error && <p className=" text-red-500">{error}</p>}
 
                 <div className='grid grid-cols-2 gap-6'>
-                    <div className='form-group flex flex-col'>
+                    {/* <div className='form-group flex flex-col'>
                         <label className='form-label'>Status</label>
-                        <input className='form-control' type="text" placeholder='Enter the status ' value={status} onChange={(e) => setStatus(e.target.files[0])} />
-                    </div>
+                        <input className='form-control' type="text" placeholder='Enter the status ' value={status} onChange={(e) => setStatus(e.target.value)} />
+                    </div> */}
                     <div className='form-group flex flex-col'>
                         <label className='form-label'>Medicine Name</label>
-                        <input className='form-control' type="text" placeholder='Enter medicine name' value={medicineName} onChange={(e) => setMedicineName(e.target.files[0])} />
+                        <input className='form-control' type="text" placeholder='Enter medicine name' value={medicineName} onChange={(e) => setMedicineName(e.target.value)} />
                     </div>
                     <div className='form-group flex flex-col'>
                         <label className='form-label'>Quantity</label>
-                        <input className='form-control' type="number" placeholder='Enter your quality' value={quantity} onChange={(e) => setQuantity(e.target.files[0])} />
+                        <input className='form-control' type="number" placeholder='Enter your quality' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
                     </div>
                     <div className="form-group flex flex-col">
                         <label htmlFor="request">Request</label>
@@ -94,7 +94,7 @@ function MedicineCreate(props) {
                             })}
                         </select>
                     </div>
-                    <div className="form-group flex flex-col">
+                    {/* <div className="form-group flex flex-col">
                         <label htmlFor="interested">Interested</label>
                         <select name="interested" id="interested" value={donerId} onChange={(e) => setDonerId(e.target.value)}>
                             <option>Select an Option</option>
@@ -104,7 +104,7 @@ function MedicineCreate(props) {
                                 )
                             })}
                         </select>
-                    </div>
+                    </div> */}
                 </div>
                 <button type='submit' className='bg-primary  text-base leading-6 font-medium text-white px-10 py-[14px] rounded-lg'>Create</button>
             </form>

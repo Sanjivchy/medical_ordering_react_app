@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Login from './pages/auth/Login'
-import Register from './pages/auth/Register'
+// import Register from './pages/auth/Register'
+import Register from './pages/member/Register'
 import ChangePassword from "./pages/auth/ChangePassword";
 import Dashboard from './pages/dashboard/Index'
 

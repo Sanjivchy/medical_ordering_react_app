@@ -22,8 +22,21 @@ function DonorList() {
         listDonors();
     }, [])
 
-    const handleDelete = (id) => {
-        const res = server.delete(`donar/crud/${id}`, {
+    const handleDelete = async (id) => {
+        const res = await server.delete(`donar/crud/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        listDonors();
+    }
+    
+    const handleApprove = async (id, name, email) => {
+        const res = await server.post(`approve-donar-email/`, {
+            id:id,
+            name:name,
+            email: email
+        }, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -43,6 +56,7 @@ function DonorList() {
                         <tr>
                             <th>SN</th>
                             <th>Organization Name</th>
+                            <th>Status</th>
                             <th>Mobile no</th>
                             <th>Email</th>
                             <th>Location</th>
@@ -55,6 +69,7 @@ function DonorList() {
                                 <tr key={key}>
                                     <td>{key + 1}</td>
                                     <td>{donor.name}</td>
+                                    <td>{donor.accepted ? 'Accepted': 'Waiting Approval'}</td>
                                     <td>{donor.mobile_no}</td>
                                     <td>{donor.email}</td>
                                     <td>{donor.district_name},{donor.gaupalika_name}</td>
@@ -68,7 +83,7 @@ function DonorList() {
                                             <div className='invisible opacity-0 z-20 absolute -translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible transition-transform duration-300 '>
                                                 <div className='flex flex-col bg-white shadow-lg rounded-lg'>
                                                     <Link to={`/donors/${donor.id}/`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50'>View Detail</Link>
-                                                    <Link to="/" className='text-sm text-primary px-6 py-3 text-left hover:bg-gray-50' >Approve</Link>
+                                                    <button className='text-sm text-primary px-6 py-3 text-left hover:bg-gray-50' onClick={() => handleApprove(donor.id, donor.name, donor.email)} >Approve</button>
                                                     <Link to={`/donors/${donor.id}/edit`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50' >
                                                         Edit
                                                     </Link>

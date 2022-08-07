@@ -30,6 +30,17 @@ function MedicineList() {
         })
         listRequest();
     }
+    
+    const handleApprove = async (id) => {
+        const res = await server.post(`approve-medicine/`, {
+            id: id
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        listRequest();
+    }
 
     return (
         <>
@@ -68,7 +79,7 @@ function MedicineList() {
                                         <Link className='px-4 py-1 rounded-lg text-white bg-primary' to={`/medicines/${medicine.id}/edit`}  >
                                             Edit
                                         </Link>
-                                        <Link to="/" className='px-4 py-1 rounded-lg text-white bg-[#3B8B6F]'>Accept Request</Link>
+                                        <button onClick={() => handleApprove(medicine.id)} className='px-4 py-1 rounded-lg text-white bg-[#3B8B6F]'>Accept Request</button>
                                     </div>
                                 </div>
                             </div>

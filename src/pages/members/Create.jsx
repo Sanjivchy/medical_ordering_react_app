@@ -36,15 +36,18 @@ function MemberCreate(props) {
         formData.append('mobile_no', mobileNumber)
         formData.append('related_person', relatedPerson)
         formData.append('document', document, document.name)
-        const res = await server.post('member/list', formData, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
+        const res = await server.post('member/list', formData 
+        // ,{
+        //     headers: {
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // }
+        )
         if (res.status != 200) {
             setError('Error occured.')
         }
-        navigate('/members')
+        // navigate('/members')
+        navigate('/')
     }
     return (
         <div className='max-w-2xl mx-auto border border-gray-300 rounded-lg m-20 p-10 space-y-6'>

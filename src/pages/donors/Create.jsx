@@ -37,15 +37,18 @@ function DonorCreate(props) {
         formData.append('mobile_no', mobileNumber)
         formData.append('related_person', relatedPerson)
         formData.append('document', document, document.name)
-        const res = await server.post('donar/list', formData, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
+        const res = await server.post('donar/list', formData
+        // , {
+        //     headers: {
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // }
+        )
         if (res.status != 200) {
             setError('Error occured.')
         }
-        navigate('/donors')
+        // navigate('/donors')
+        navigate('/')
     }
     return (
         <div>

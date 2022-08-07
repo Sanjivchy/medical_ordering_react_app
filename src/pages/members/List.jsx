@@ -30,6 +30,18 @@ function MemberList() {
         })
         listMembers();
     }
+    const handleApprove = async (id,name, email) => {
+        const res = await server.post(`approve-member-email/`, {
+            id:id,
+            name:name,
+            email: email
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        listMembers();
+    }
 
     return (
         <>
@@ -43,6 +55,7 @@ function MemberList() {
                         <tr>
                             <th>SN</th>
                             <th>Organization Name</th>
+                            <th>Status</th>
                             <th>Mobile no</th>
                             <th>Email</th>
                             <th>Location</th>
@@ -55,6 +68,7 @@ function MemberList() {
                                 <tr key={key}>
                                     <td>{key + 1}</td>
                                     <td>{member.name}</td>
+                                    <td>{member.accepted ? 'Accepted' : 'Waiting Approval'}</td>
                                     <td>{member.mobile_no}</td>
                                     <td>{member.email}</td>
                                     <td>{member.district_name},{member.gaupalika_name}</td>
@@ -68,7 +82,7 @@ function MemberList() {
                                             <div className='invisible opacity-0 z-20 absolute -translate-y-4 group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible transition-transform duration-300 '>
                                                 <div className='flex flex-col bg-white shadow-lg rounded-lg'>
                                                     <Link to={`/members/${member.id}/`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50'>View Detail</Link>
-                                                    <Link to={`/members/${member.id}/details`} href="" className='text-sm text-primary px-6 py-3 text-left hover:bg-gray-50' >Approve</Link>
+                                                    <button onClick={() => handleApprove(member.id, member.name, member.email)} href="" className='text-sm text-primary px-6 py-3 text-left hover:bg-gray-50' >Approve</button>
                                                     <Link to={`/members/${member.id}/edit`} className='text-sm text-primary px-6 py-3 hover:bg-gray-50' >
                                                         Edit
                                                     </Link>
