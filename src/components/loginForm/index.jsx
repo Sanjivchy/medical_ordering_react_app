@@ -16,13 +16,13 @@ function index(props) {
     const [error, setError] = useState('')
     
     const fetchUserData = async () => {
-        console.log('fetch data');
+        // console.log('fetch data');
         const res = await server.get('userprofile/', {
           headers: {
             Authorization: `Bearer ${token}`
           }
         })
-        console.log(res.data, 'user');
+        // console.log(res.data, 'user');
         dispatch(setUser(res.data))
       }
 
@@ -33,7 +33,7 @@ function index(props) {
             return
         }
         const res = await server.post('api/token/', {username, password})
-        console.log(res);
+        // console.log(res);
         if(res?.data) {
             dispatch(login({username: username, token: res.data.access, refresh: res.data.refresh}))
             fetchUserData()

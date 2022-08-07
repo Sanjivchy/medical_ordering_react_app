@@ -18,7 +18,7 @@ function InterestedView(props) {
               Authorization: `Bearer ${token}`
           }
       })
-        console.log(data, 'data');
+        // console.log(data, 'data');
         setInterested(data)
     }, [])
     

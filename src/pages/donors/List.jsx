@@ -14,7 +14,7 @@ function DonorList() {
                 Authorization: `Bearer ${token}`
             }
         })
-        console.log(res);
+        // console.log(res);
         setDonors(res.data);
     }
 

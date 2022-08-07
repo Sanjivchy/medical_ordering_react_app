@@ -56,7 +56,7 @@ function MemberEdit(props) {
                 Authorization: `Bearer ${token}`
             }
         })
-        console.log(res);
+        // console.log(res);
         setMembers(res.data);
     }
 

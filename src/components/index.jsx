@@ -4,7 +4,7 @@ import Sidebar from '../components/SidebarUi/index'
 import Navbar from '../components/navBar/Index'
 function index() {
     const location = useLocation();
-    console.log(location.pathname)
+    // console.log(location.pathname)
     let sidebar , navbar;
     if(location.pathname === '/'){
         sidebar = null

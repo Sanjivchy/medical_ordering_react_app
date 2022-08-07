@@ -14,7 +14,7 @@ function MedicineList() {
                 Authorization: `Bearer ${token}`
             }
         })
-        console.log(res);
+        // console.log(res);
         setMedicines(res.data);
     }
 
